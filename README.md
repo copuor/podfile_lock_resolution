@@ -1,3 +1,10 @@
+# 添加功能
+
+- [x] 搜索节点
+- [x] 筛选节点
+- [x] 放大、缩小视图
+- [x] 导出图片
+
 # podfile_lock_resolution
 我叫邓江.                  ,      有参考 octree/pretty
 
