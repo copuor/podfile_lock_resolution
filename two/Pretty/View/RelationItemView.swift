@@ -17,6 +17,7 @@ class RelationItemView: NSView {
     }
     private(set) var label: NSTextField = {
         let textfield = NSTextField()
+        textfield.font = NSFont.systemFont(ofSize: 12)
         textfield.isEditable = false
         textfield.textColor = .white
         textfield.alignment = .center

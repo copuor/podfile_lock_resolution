@@ -14,10 +14,10 @@ class RelationView: NSView {
     //    MARK: Accessor
     
     /// "parent|daughter": Layer
-    private var lineMap = [String: CAShapeLayer]()
-    private var itemMap = [String: RelationItemView]()
-    private var nodeMap = [String: DependencyNode]()
-    private var currentDraggingItem: RelationItemView? = nil
+    var lineMap = [String: CAShapeLayer]()
+    var itemMap = [String: RelationItemView]()
+    var nodeMap = [String: DependencyNode]()
+    var currentDraggingItem: RelationItemView? = nil
 
     private var lastDragPosition = NSPoint(x: 0, y: 0)
     
@@ -182,9 +182,11 @@ class RelationView: NSView {
     ///   - son: 子节点名称
     /// - Returns: CGPath
     private func linePath(parent: String, son: String) -> CGPath {
-        
-        let parentItem = itemMap[parent]!
-        let sonItem = itemMap[son]!
+                
+        guard let parentItem = itemMap[parent],
+              let sonItem = itemMap[son] else {
+            return CGMutablePath()
+        }
         
         let path = CGMutablePath()
         path.move(to: parentItem.center)

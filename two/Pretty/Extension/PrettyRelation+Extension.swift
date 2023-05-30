@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import AppKit
 
 private let kRelationHorizentalSpacing  =   30
 private let kRelationVerticalSpacing    =   100
@@ -16,7 +17,8 @@ private let kRelationViewPadding        =   40
 
 private func widthForItem(_ text: String) -> Int {
     
-    return 10 + 10 * text.count
+    let width = (text as NSString).size(withAttributes: [NSAttributedString.Key.font: NSFont.systemFont(ofSize: 12)]).width
+    return 12 + Int(width) + 12
 }
 
 

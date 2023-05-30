@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17701"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="21507"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -705,42 +705,128 @@
         <scene sceneID="hIz-AP-VOD">
             <objects>
                 <viewController id="XfG-lQ-9wD" customClass="ViewController" customModule="Pretty" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" wantsLayer="YES" id="m2S-Jp-Qdl">
-                        <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
+                    <view key="view" wantsLayer="YES" id="m2S-Jp-Qdl" customClass="DragView" customModule="Pretty" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="0.0" width="620" height="270"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
+                            <searchField wantsLayer="YES" verticalHuggingPriority="750" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F2k-12-exI">
+                                <rect key="frame" x="20" y="233" width="0.0" height="22"/>
+                                <searchFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" borderStyle="bezel" alignment="justified" placeholderString="请输入组件名称" usesSingleLineMode="YES" bezelStyle="round" id="rpi-0E-rF9">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" red="0.1016593225" green="0.1016593225" blue="0.1016593225" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </searchFieldCell>
+                                <connections>
+                                    <outlet property="delegate" destination="XfG-lQ-9wD" id="8hT-00-1bM"/>
+                                </connections>
+                            </searchField>
                             <scrollView horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mNW-5e-bvq">
-                                <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
+                                <rect key="frame" x="0.0" y="0.0" width="620" height="218"/>
                                 <clipView key="contentView" id="4c5-ch-9zw">
-                                    <rect key="frame" x="1" y="1" width="478" height="268"/>
+                                    <rect key="frame" x="1" y="1" width="618" height="216"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <view fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FIT-Y4-b5v">
-                                            <rect key="frame" x="0.0" y="0.0" width="463" height="253"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="603" height="201"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         </view>
                                     </subviews>
-                                    <color key="backgroundColor" red="0.94117647058823528" green="0.94117647058823528" blue="0.94117647058823528" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </clipView>
                                 <scroller key="horizontalScroller" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="Eua-Gt-P78">
-                                    <rect key="frame" x="1" y="253" width="478" height="16"/>
+                                    <rect key="frame" x="1" y="201" width="618" height="16"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="yCD-1D-L6O">
-                                    <rect key="frame" x="463" y="1" width="16" height="268"/>
+                                    <rect key="frame" x="603" y="1" width="16" height="216"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                             </scrollView>
+                            <segmentedControl verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="k9k-hk-ywz">
+                                <rect key="frame" x="38" y="232" width="564" height="24"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="560" id="3Jo-hO-bpa"/>
+                                </constraints>
+                                <segmentedCell key="cell" borderStyle="border" alignment="left" style="rounded" trackingMode="selectOne" id="EeW-Fb-Kp1">
+                                    <font key="font" metaFont="system"/>
+                                    <segments>
+                                        <segment width="32"/>
+                                        <segment width="32" selected="YES" tag="1"/>
+                                        <segment width="32">
+                                            <nil key="label"/>
+                                        </segment>
+                                    </segments>
+                                </segmentedCell>
+                            </segmentedControl>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="WNr-5I-57R">
+                                <rect key="frame" x="519" y="43" width="88" height="32"/>
+                                <buttonCell key="cell" type="push" title="导出图片" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="rLs-3S-FqV">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <color key="bezelColor" name="gridColor" catalog="System" colorSpace="catalog"/>
+                                <connections>
+                                    <action selector="export:" target="XfG-lQ-9wD" id="Kef-cj-ddV"/>
+                                </connections>
+                            </button>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="NFM-HS-qgb">
+                                <rect key="frame" x="498" y="13" width="41" height="32"/>
+                                <buttonCell key="cell" type="push" title="-" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="DDH-WB-rw1">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <color key="bezelColor" name="gridColor" catalog="System" colorSpace="catalog"/>
+                                <connections>
+                                    <action selector="small:" target="XfG-lQ-9wD" id="qcs-jU-49O"/>
+                                </connections>
+                            </button>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="V1z-DR-Vwh">
+                                <rect key="frame" x="530" y="13" width="43" height="32"/>
+                                <buttonCell key="cell" type="push" title="=" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="1qv-GW-V5Y">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <color key="bezelColor" name="gridColor" catalog="System" colorSpace="catalog"/>
+                                <connections>
+                                    <action selector="reset:" target="XfG-lQ-9wD" id="A70-n0-Kb6"/>
+                                </connections>
+                            </button>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="thM-xg-bL2">
+                                <rect key="frame" x="564" y="13" width="43" height="32"/>
+                                <buttonCell key="cell" type="push" title="+" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="5bm-AE-17v">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <color key="bezelColor" name="gridColor" catalog="System" colorSpace="catalog"/>
+                                <connections>
+                                    <action selector="big:" target="XfG-lQ-9wD" id="cVw-fW-hOR"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="WNr-5I-57R" secondAttribute="trailing" constant="20" id="0ap-e5-Gc8"/>
+                            <constraint firstItem="thM-xg-bL2" firstAttribute="leading" secondItem="V1z-DR-Vwh" secondAttribute="trailing" constant="5" id="3F1-Td-q8B"/>
                             <constraint firstAttribute="trailing" secondItem="mNW-5e-bvq" secondAttribute="trailing" id="3Ue-oY-dKw"/>
+                            <constraint firstItem="F2k-12-exI" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" id="7v7-ao-KSe"/>
+                            <constraint firstItem="k9k-hk-ywz" firstAttribute="leading" secondItem="F2k-12-exI" secondAttribute="trailing" constant="20" id="CGr-Il-xN1"/>
+                            <constraint firstItem="thM-xg-bL2" firstAttribute="top" secondItem="WNr-5I-57R" secondAttribute="bottom" constant="10" id="Jfs-cy-LNi"/>
+                            <constraint firstItem="F2k-12-exI" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="15" id="NLZ-vT-hAh"/>
+                            <constraint firstAttribute="bottom" secondItem="thM-xg-bL2" secondAttribute="bottom" constant="20" id="Ng1-fr-Iiu"/>
+                            <constraint firstAttribute="trailing" secondItem="k9k-hk-ywz" secondAttribute="trailing" constant="20" id="Qs5-0u-mI7"/>
                             <constraint firstItem="mNW-5e-bvq" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" id="RBY-b8-50p"/>
-                            <constraint firstItem="mNW-5e-bvq" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" id="trV-Eq-Ct6"/>
+                            <constraint firstItem="NFM-HS-qgb" firstAttribute="centerY" secondItem="thM-xg-bL2" secondAttribute="centerY" id="THY-zE-ifL"/>
+                            <constraint firstItem="V1z-DR-Vwh" firstAttribute="leading" secondItem="NFM-HS-qgb" secondAttribute="trailing" constant="5" id="gIs-v9-wKU"/>
+                            <constraint firstAttribute="trailing" secondItem="thM-xg-bL2" secondAttribute="trailing" constant="20" id="iF1-M8-kwr"/>
+                            <constraint firstItem="V1z-DR-Vwh" firstAttribute="centerY" secondItem="thM-xg-bL2" secondAttribute="centerY" id="lfX-3C-004"/>
                             <constraint firstAttribute="bottom" secondItem="mNW-5e-bvq" secondAttribute="bottom" id="uRF-ER-BG1"/>
+                            <constraint firstItem="k9k-hk-ywz" firstAttribute="centerY" secondItem="F2k-12-exI" secondAttribute="centerY" id="uiL-1t-gSK"/>
+                            <constraint firstItem="mNW-5e-bvq" firstAttribute="top" secondItem="F2k-12-exI" secondAttribute="bottom" constant="15" id="zVH-fl-scG"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="scrollView" destination="mNW-5e-bvq" id="CPo-tA-Kdv"/>
+                        <outlet property="searchView" destination="F2k-12-exI" id="jkc-Rq-06L"/>
+                        <outlet property="segmentControl" destination="k9k-hk-ywz" id="XI7-Id-cdR"/>
                     </connections>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
